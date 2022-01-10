@@ -1,23 +1,14 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.config/zsh/histfile
-HISTSIZE=10000
-SAVEHIST=10000
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
 setopt autocd extendedglob nomatch notify
-bindkey -v
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/tom/.zshrc'
+unsetopt beep
+
+# Completion
+zstyle :compinstall filename '~/.zshrc'
 bindkey '^R' history-incremental-search-backward
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
 
 zmodload zsh/complist
 zstyle ':completion:*' menu yes select
@@ -27,17 +18,14 @@ bindkey -M menuselect '?' history-incremental-search-forward
 bindkey -M vicmd '?' history-incremental-search-backward
 bindkey -M vicmd '/' history-incremental-search-forward
 
-source ~/.powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.config/zsh/p10k.zsh ]] || source ~/.config/zsh/p10k.zsh
-
 KEYTIMEOUT=1
 
 bindkey "^e" history-beginning-search-backward
 bindkey "^y" history-beginning-search-forward
 
-# Change cursor shape for different vi modes.
+# Vim mode
+bindkey -v
+## Change cursor shape for different vi modes.
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]] ||
      [[ $1 = 'block' ]]; then
@@ -58,15 +46,18 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-function goto-dir {
-  cd $(fo -c)
-  clear
-}
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey '^k' edit-command-line
-unsetopt BEEP
 
+# prompt
+fpath+=$HOME/.config/zsh/pure
+autoload -U promptinit; promptinit
+prompt pure
+PURE_PROMPT_SYMBOL=→
+PURE_PROMPT_VICMD_SYMBOL=←
+
+# rsync copy
 function cpr() {
   rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 "$@"
 }
@@ -82,5 +73,3 @@ alias pull='git pull'
 alias adda='git add -A'
 alias comm='git commit -v'
 alias j='nvim'
-
-source ~/.config/zsh/zsh-z.plugin.zsh
