@@ -20,11 +20,11 @@ bindkey -M vicmd '/' history-incremental-search-forward
 
 KEYTIMEOUT=1
 
+# Vim mode
+bindkey -v
 bindkey "^e" history-beginning-search-backward
 bindkey "^y" history-beginning-search-forward
 
-# Vim mode
-bindkey -v
 ## Change cursor shape for different vi modes.
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]] ||
