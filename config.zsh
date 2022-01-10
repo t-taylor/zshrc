@@ -58,6 +58,7 @@ autoload -U promptinit; promptinit
 prompt pure
 PURE_PROMPT_SYMBOL=→
 PURE_PROMPT_VICMD_SYMBOL=←
+zstyle ':prompt:pure:prompt:success' color white
 
 # rsync copy
 function cpr() {
