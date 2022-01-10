@@ -10,6 +10,9 @@ bindkey '^R' history-incremental-search-backward
 autoload -Uz compinit
 compinit
 
+# vim mode
+bindkey -v
+
 zmodload zsh/complist
 zstyle ':completion:*' menu yes select
 bindkey -M menuselect '?' history-incremental-search-forward
@@ -21,7 +24,6 @@ bindkey -M vicmd '/' history-incremental-search-forward
 KEYTIMEOUT=1
 
 # Vim mode
-bindkey -v
 bindkey "^e" history-beginning-search-backward
 bindkey "^y" history-beginning-search-forward
 
@@ -64,6 +66,9 @@ function cpr() {
 function mvr() {
   rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 --remove-source-files "$@"
 }
+
+# z cd
+source $HOME/.config/zsh/zsh-z/zsh-z.plugin.zsh
 
 alias l='ls -lashG'
 alias atexmk="ls *.tex *.bib | entr -s 'latexmk --pdf -gg -f && latexmk -c'"
