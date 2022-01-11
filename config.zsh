@@ -1,4 +1,4 @@
-HISTFILE=~/.histfile
+HISTFILE=$HOME/.config/zsh/histfile
 HISTSIZE=1000
 SAVEHIST=1000
 setopt autocd extendedglob nomatch notify
