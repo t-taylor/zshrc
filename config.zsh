@@ -70,13 +70,14 @@ function mvr() {
 
 # z cd
 source $HOME/.config/zsh/zsh-z/zsh-z.plugin.zsh
+# autosuggestion
+source $HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 if [ "$HOST" = "INF-FVFGN0ULQ05P" ]; then
   alias l='ls -lahG'
 else
   alias l='ls -lahG --color'
 fi
-
 
 alias atexmk="ls *.tex *.bib | entr -s 'latexmk --pdf -gg -f && latexmk -c'"
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
