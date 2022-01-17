@@ -72,6 +72,7 @@ function mvr() {
 source $HOME/.config/zsh/zsh-z/zsh-z.plugin.zsh
 # autosuggestion
 source $HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+bindkey '^f' autosuggest-accept
 
 if [ "$HOST" = "INF-FVFGN0ULQ05P" ]; then
   alias l='ls -lahG'
