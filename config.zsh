@@ -1,7 +1,7 @@
 HISTFILE=$HOME/.config/zsh/histfile
-HISTSIZE=1000
-SAVEHIST=1000
-setopt autocd extendedglob nomatch notify
+HISTSIZE=10000
+SAVEHIST=10000
+setopt autocd extendedglob nomatch notify hist_ignore_all_dups
 unsetopt beep
 
 # Completion
@@ -87,3 +87,4 @@ alias pull='git pull'
 alias adda='git add -A'
 alias comm='git commit -v'
 alias j='nvim'
+alias vimdiff='nvim $(git diff --name-only origin/main)'
