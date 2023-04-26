@@ -84,7 +84,7 @@ alias atexmk="ls *.tex *.bib | entr -s 'latexmk --pdf -gg -f && latexmk -c'"
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias push='git push'
 alias pull='git pull'
-alias adda='git add -A'
+alias adda='git add -A -p'
 alias comm='git commit -v'
 alias j='nvim'
 alias vimdiff='nvim $(git diff --name-only origin/main)'
